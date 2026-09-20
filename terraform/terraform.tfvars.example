@@ -1,0 +1,11 @@
+# Copy to terraform.tfvars and fill in real values.
+# terraform.tfvars is gitignored - never commit real credentials.
+
+# Proxmox API endpoint. Use the host's LAN address, or its Tailscale
+# address if you manage the host remotely.
+virtual_environment_endpoint = "https://<proxmox-host>:8006/"
+
+# Proxmox API token, created under:
+#   Datacenter > Permissions > API Tokens
+# Format: <user>@<realm>!<token-id>=<secret>
+virtual_environment_api_token = "terraform@pve!<token-id>=<secret>"
