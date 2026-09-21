@@ -13,6 +13,11 @@ variable "virtual_environment_node_name" {
    default = "pve"
 }
 
+variable "lan_gateway" {
+  type    = string
+  default = "192.168.1.1"
+}
+
 variable "nodes" {
   type = map(object({
     node_name   = string
@@ -23,6 +28,7 @@ variable "nodes" {
     memory_mb   = number
     swap_mb     = number
     disk_gb     = number
+    ip_address  = string
   }))
 
   default = {
@@ -35,6 +41,7 @@ variable "nodes" {
       memory_mb   = 1024
       swap_mb     = 512
       disk_gb     = 10
+      ip_address  = "192.168.1.3/24"
     }
 
     slave1 = {
@@ -46,6 +53,7 @@ variable "nodes" {
       memory_mb   = 768
       swap_mb     = 256
       disk_gb     = 8
+      ip_address  = "192.168.1.4/24"
     }
 
     slave2 = {
@@ -57,6 +65,7 @@ variable "nodes" {
       memory_mb   = 768
       swap_mb     = 256
       disk_gb     = 8
+      ip_address  = "192.168.1.8/24"
     }
   }
 }

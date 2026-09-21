@@ -34,7 +34,8 @@ resource "proxmox_virtual_environment_container" "ubuntu_container" {
 
     ip_config {
       ipv4 {
-        address = "dhcp"
+        address = each.value.ip_address
+        gateway = var.lan_gateway
       }
     }
 
