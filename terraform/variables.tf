@@ -19,6 +19,10 @@ variable "nodes" {
     vm_id       = number
     role        = string
     description = string
+    cpu_cores   = number
+    memory_mb   = number
+    swap_mb     = number
+    disk_gb     = number
   }))
 
   default = {
@@ -27,6 +31,10 @@ variable "nodes" {
       vm_id       = 100
       role        = "master"
       description = "Kubernetes master node"
+      cpu_cores   = 2
+      memory_mb   = 1024
+      swap_mb     = 512
+      disk_gb     = 10
     }
 
     slave1 = {
@@ -34,6 +42,10 @@ variable "nodes" {
       vm_id       = 101
       role        = "slave"
       description = "Kubernetes worker node 1"
+      cpu_cores   = 1
+      memory_mb   = 768
+      swap_mb     = 256
+      disk_gb     = 8
     }
 
     slave2 = {
@@ -41,6 +53,10 @@ variable "nodes" {
       vm_id       = 102
       role        = "slave"
       description = "Kubernetes worker node 2"
+      cpu_cores   = 1
+      memory_mb   = 768
+      swap_mb     = 256
+      disk_gb     = 8
     }
   }
 }

@@ -20,6 +20,15 @@ resource "proxmox_virtual_environment_container" "ubuntu_container" {
     nesting = true
   }
 
+  cpu {
+    cores = each.value.cpu_cores
+  }
+
+  memory {
+    dedicated = each.value.memory_mb
+    swap      = each.value.swap_mb
+  }
+
   initialization {
     hostname =  each.value.node_name
 
@@ -43,7 +52,7 @@ resource "proxmox_virtual_environment_container" "ubuntu_container" {
 
   disk {
     datastore_id = "local-lvm"
-    size         = 4
+    size         = each.value.disk_gb
   }
 
   operating_system {
