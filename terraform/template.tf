@@ -7,10 +7,13 @@ resource "proxmox_download_file" "ubuntu_2204_lxc_img" {
 }
 
 resource "proxmox_virtual_environment_container" "ubuntu_container" {
-  description = "Managed by Terraform"
+  for_each = var.nodes
 
-  node_name = "pve"
-  vm_id     = 1234
+  node_name   = var.virtual_environment_node_name
+  vm_id       = each.value.vm_id
+  description = each.value.description
+
+  tags = [each.value.role]
 
   unprivileged = true
   features {
@@ -18,7 +21,7 @@ resource "proxmox_virtual_environment_container" "ubuntu_container" {
   }
 
   initialization {
-    hostname = "ubuntu-container"
+    hostname =  each.value.node_name
 
     ip_config {
       ipv4 {
@@ -78,4 +81,8 @@ output "ubuntu_container_private_key" {
 
 output "ubuntu_container_public_key" {
   value = tls_private_key.ubuntu_container_key.public_key_openssh
+}
+
+output "ubuntu_container_ip" {
+  value = { for key, container in proxmox_virtual_environment_container.ubuntu_container : key => container.ipv4 }
 }
