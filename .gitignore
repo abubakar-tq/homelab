@@ -9,3 +9,18 @@ tfplan
 crash.log
 crash.*.log
 .terraform.tfstate.lock.info
+
+# --- Secrets / credentials ---
+# Belt-and-braces: keys and kubeconfigs must never be committed.
+ansible/files/
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+kubeconfig
+*.kubeconfig
+.env
+.env.*
+
+# --- Ansible ---
+*.retry
