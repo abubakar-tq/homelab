@@ -23,6 +23,11 @@ variable "dns_servers" {
   default = ["192.168.1.1", "1.1.1.1"]
 }
 
+variable "network_mtu" {
+  type    = number
+  default = 1492
+}
+
 variable "nodes" {
   type = map(object({
     node_name   = string

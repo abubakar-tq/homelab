@@ -53,6 +53,7 @@ resource "proxmox_virtual_environment_container" "ubuntu_container" {
 
   network_interface {
     name = "veth0"
+    mtu  = var.network_mtu
   }
 
   disk {
