@@ -25,3 +25,18 @@
       src: /var/lib/rancher/k3s/server/node-token
      register: node_token
      no_log: true
+
+
+- name: install k3s agent
+  hosts: workers
+  tasks:
+   - name: Install k3s agent
+     ansible.builtin.shell: "curl -sfL https://get.k3s.io | sh -"
+     environment:
+       K3S_URL: "https://{{ hostvars['master']['ansible_host'] }}:6443"
+       K3S_TOKEN: "{{ hostvars['master']['node_token']['content'] | b64decode | trim }}"
+       INSTALL_K3S_EXEC: "agent --kubelet-arg=feature-gates=KubeletInUserNamespace=true"
+     register: k3s_agent_install
+     until: k3s_agent_install.rc == 0
+     retries: 5
+     delay: 10
