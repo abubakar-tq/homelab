@@ -1,0 +1,8 @@
+- name: install curl
+  hosts: all
+  tasks:
+   - name: Install curl
+     ansible.builtin.apt:
+       name: curl
+       update_cache: true
+       state: present
