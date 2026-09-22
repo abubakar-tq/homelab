@@ -32,6 +32,10 @@ resource "proxmox_virtual_environment_container" "ubuntu_container" {
   initialization {
     hostname =  each.value.node_name
 
+    dns {
+      servers = var.dns_servers
+    }
+
     ip_config {
       ipv4 {
         address = each.value.ip_address

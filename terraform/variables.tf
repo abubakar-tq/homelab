@@ -18,6 +18,11 @@ variable "lan_gateway" {
   default = "192.168.1.1"
 }
 
+variable "dns_servers" {
+  type    = list(string)
+  default = ["192.168.1.1", "1.1.1.1"]
+}
+
 variable "nodes" {
   type = map(object({
     node_name   = string
