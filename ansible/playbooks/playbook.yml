@@ -6,3 +6,22 @@
        name: curl
        update_cache: true
        state: present
+
+
+- name: install k3s server
+  hosts: masters
+  tasks:
+   - name: Install k3s
+     ansible.builtin.shell: "curl -sfL https://get.k3s.io | sh -"
+     environment:
+       INSTALL_K3S_EXEC: "server --kubelet-arg=feature-gates=KubeletInUserNamespace=true"
+     register: k3s_install
+     until: k3s_install.rc == 0
+     retries: 5
+     delay: 10
+
+   - name: Read File
+     ansible.builtin.slurp:
+      src: /var/lib/rancher/k3s/server/node-token
+     register: node_token
+     no_log: true
