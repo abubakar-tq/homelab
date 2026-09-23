@@ -48,8 +48,8 @@ variable "nodes" {
       role        = "master"
       description = "Kubernetes master node"
       cpu_cores   = 2
-      memory_mb   = 1024
-      swap_mb     = 512
+      memory_mb   = 2048
+      swap_mb     = 1024
       disk_gb     = 10
       ip_address  = "192.168.1.3/24"
     }
@@ -60,8 +60,8 @@ variable "nodes" {
       role        = "slave"
       description = "Kubernetes worker node 1"
       cpu_cores   = 1
-      memory_mb   = 768
-      swap_mb     = 256
+      memory_mb   = 1536
+      swap_mb     = 512
       disk_gb     = 8
       ip_address  = "192.168.1.4/24"
     }
@@ -72,8 +72,8 @@ variable "nodes" {
       role        = "slave"
       description = "Kubernetes worker node 2"
       cpu_cores   = 1
-      memory_mb   = 768
-      swap_mb     = 256
+      memory_mb   = 1536
+      swap_mb     = 512
       disk_gb     = 8
       ip_address  = "192.168.1.8/24"
     }
