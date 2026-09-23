@@ -1,5 +1,6 @@
 # --- Terraform ---
 .terraform/
+.terraform.lock.hcl.bak
 *.tfstate
 *.tfstate.*
 *.tfvars
@@ -24,3 +25,15 @@ kubeconfig
 
 # --- Ansible ---
 *.retry
+
+# --- Local working notes / agent config (kept out of the repo) ---
+docs/
+CLAUDE.md
+
+# --- Editor / OS noise ---
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
