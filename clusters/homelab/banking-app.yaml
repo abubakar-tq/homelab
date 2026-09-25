@@ -21,6 +21,7 @@ spec:
   prune: true
   wait: true
   timeout: 5m0s
+  targetNamespace: banking-app
   sourceRef:
     kind: GitRepository
     name: banking-app
